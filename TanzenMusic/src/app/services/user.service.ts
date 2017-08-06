@@ -9,11 +9,11 @@ import { User } from '../models/User';
 
 @Injectable()
 export class UserService {
-  private headers = new Headers({"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"});
-  private passheaders = new Headers({"Access-Control-Allow-Origin": "http://localhost:3000","Access-Control-Allow-Credentials": "true", "Content-Type": "application/x-www-form-urlencoded"});
+  private headers = new Headers();
+  private passheaders = new Headers({"Content-Type": "application/x-www-form-urlencoded"});
 
 
-  private userUrl = 'http://localhost:3000';
+  private userUrl =  'http://10.131.137.219:3001';
 
   constructor(private http: Http) {
   }
