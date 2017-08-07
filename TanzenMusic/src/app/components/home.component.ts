@@ -13,7 +13,7 @@ import {Song} from "../models/Song";
 
 export class HomeComponent implements  OnInit {
   private mysongs: Song[];
-    constructor( private userService:UserService, private  songService:SongService)
+    constructor(private router:Router,private userService:UserService, private  songService:SongService)
     {
       this.userService.getLogUserInfo().then(res=>{
         this.songService.getMySongs(JSON.parse(res._body).username).then(ress=>{
@@ -22,6 +22,11 @@ export class HomeComponent implements  OnInit {
 
       })
     }
+
+  editSong(song:Song):void{
+    sessionStorage.setItem("editSong",JSON.stringify(song));
+    this.router.navigate(['/edit']);
+  }
 
   search(searchTerm:string):void{
     this.userService.getLogUserInfo().then(res=>{

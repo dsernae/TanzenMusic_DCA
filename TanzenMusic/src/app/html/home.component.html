@@ -97,7 +97,7 @@
             <td class="letra">{{song.date}}</td>
             <td class="letra">{{song.owner_username}}</td>
 
-            <td class="text-right"><a routerLink="/edit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span> Editar</a></td>
+            <td class="text-right"><a (click)="editSong(song)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span> Editar</a></td>
           </tr>
         </table>
         <div class="column add-bottom">

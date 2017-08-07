@@ -7,7 +7,7 @@ import { Song } from '../models/Song';
 @Injectable()
 export class SongService {
   private headers = new Headers({ "Content-Type": "application/json"});
-  private songUrl = 'http://10.131.137.219:3001';
+  private songUrl = 'http://localhost:3000';
   constructor(private http: Http) {
   }
 
@@ -77,6 +77,13 @@ export class SongService {
     return this.http.post(this.songUrl+ "/shareSongs", JSON.stringify({_id:_id,username: username}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as any )
+      .catch(this.handleError);
+  }
+
+  updateSong(song:Song):Promise<any>{
+    return this.http.post(this.songUrl+"/updateSong", JSON.stringify(song), {headers:this.headers})
+      .toPromise()
+      .then(res=> res as any)
       .catch(this.handleError);
   }
 

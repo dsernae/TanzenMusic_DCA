@@ -19,8 +19,9 @@ router.post('/songGenre', song.searchSongsByGenre);
 router.post('/sharedWith', song.songsSharedWith);
 router.post('/mySongs', song.getMySongs);
 router.post('/shareSongs', song.shareSongsWith);
+router.post('/updateSong', song.updateSong);
 
-
+router.post('/updatePassword', user.updatePassword);
 router.post('/deleteUser', user.deleteUser);
 router.post('/searchUser', user.searchUser);
 

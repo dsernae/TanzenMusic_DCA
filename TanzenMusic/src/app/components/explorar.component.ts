@@ -17,8 +17,10 @@ export class ExplorarComponent implements OnInit {
     this.featuredAndRecentSongs=res;
   });
     this.userService.getLogUserInfo().then(res=>{
-      if(res.status.toString().indexOf("200")!=-1){
+      if(res._body.toString().indexOf("Tienes que")==-1){
         document.getElementById("boton").textContent="Perfil";
+      }else{
+        document.getElementById("boton").textContent="Iniciar Sesion";
       }
     })
   }
@@ -26,7 +28,7 @@ export class ExplorarComponent implements OnInit {
 
   goto(){
     this.userService.getLogUserInfo().then(res=>{
-      if(res.status.toString().indexOf("200")==-1){
+      if(res._body.toString().indexOf("Tienes que")!=-1){
         this.router.navigate(['/login']);
       }else{
         this.router.navigate(['/home']);
@@ -42,6 +44,13 @@ export class ExplorarComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userService.getLogUserInfo().then(res=>{
+      if(res._body.toString().indexOf("Tienes que")==-1){
+        document.getElementById("boton").textContent="Perfil";
+      }else{
+        document.getElementById("boton").textContent="Iniciar Sesion";
+      }
+    })
   }
 
 

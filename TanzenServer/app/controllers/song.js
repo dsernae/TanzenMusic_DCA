@@ -101,5 +101,21 @@ module.exports = {
         return res.status(500).send(err);
       }
     })
+  },
+  updateSong:function (req,res) {
+    Song.findByIdAndUpdate(req.body._id,{
+      title:req.body.title,
+      artist: req.body.artist,
+      genre: req.body.genre,
+      date: req.body.date,
+      visibility: req.body.visibility
+    }
+    ,function (err) {
+        if(!err) {
+          return res.status(200).send("actualizada exitosamente");
+        }else{
+          return res.status(500).send(err);
+        }
+      })
   }
 };

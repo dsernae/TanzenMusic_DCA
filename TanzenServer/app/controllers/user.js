@@ -53,7 +53,7 @@ module.exports = {
   },
   deleteUser: function (req, res) {
 
-    User.findByIdAndRemove(req.body.username, function (err) {
+    User.findByIdAndRemove(req.body._id, function (err) {
       if (!err) {
         res.status(200).send();
       } else {
@@ -81,5 +81,17 @@ module.exports = {
         return res.status(500).send(err);
       }
     })
+  },
+  updatePassword:function (req,res) {
+    User.findByIdAndUpdate(req.body._id,{
+        "password":req.body.password
+      }
+      ,function (err) {
+        if(err){
+          res.send(err).status(500);
+        }else{
+          res.send("actualizado exitosamente").status(200);
+        }
+      })
   }
 };

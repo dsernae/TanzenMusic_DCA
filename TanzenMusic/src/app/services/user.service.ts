@@ -9,11 +9,11 @@ import { User } from '../models/User';
 
 @Injectable()
 export class UserService {
-  private headers = new Headers();
-  private passheaders = new Headers({"Content-Type": "application/x-www-form-urlencoded"});
+  private headers = new Headers({"Content-Type": "application/json"});
+  private passheaders = new Headers({"Access-Control-Allow-Credentials":"true","Content-Type": "application/x-www-form-urlencoded"});
 
 
-  private userUrl =  'http://10.131.137.219:3001';
+  private userUrl =  'http://localhost:3000';
 
   constructor(private http: Http) {
   }
@@ -60,9 +60,9 @@ export class UserService {
       .catch(this.handleError)
   }
 
-  deleteUser(username: string): Promise<void>{
+  deleteUser(_id:string,username: string): Promise<void>{
     let url = this.userUrl + "/deleteUser";
-    return this.http.post(url, JSON.stringify({username:username}),{headers: this.headers})
+    return this.http.post(url, JSON.stringify({_id:_id,username:username}),{headers: this.headers})
       .toPromise()
       .then(()=>null)
       .catch(this.handleError)
@@ -70,10 +70,18 @@ export class UserService {
 
   searchUser(searchTerm : string): Promise<User[]> {
     let url = this.userUrl + "/searchUser";
+    console.log(searchTerm);
     return this.http.post(url, JSON.stringify({searchTerm:searchTerm}),{headers: this.headers})
       .toPromise()
       .then(res=> res.json() as User[])
       .catch(this.handleError)
+  }
+
+  updatePassword(id: string, password:string): Promise<any> {
+    return this.http.post(this.userUrl+"/updatePassword", JSON.stringify({"_id":id,"password":password}), {headers: new Headers({"Content-Type": "application/json"}), withCredentials: true})
+      .toPromise()
+      .then(res => res as any)
+      .catch(this.handleError);
   }
 
 
