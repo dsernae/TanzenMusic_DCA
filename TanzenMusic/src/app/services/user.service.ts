@@ -10,7 +10,7 @@ import { User } from '../models/User';
 @Injectable()
 export class UserService {
   private headers = new Headers({"Content-Type": "application/json"});
-  private passheaders = new Headers({"Access-Control-Allow-Credentials":"true","Content-Type": "application/x-www-form-urlencoded"});
+  private passheaders = new Headers({"Content-Type": "application/x-www-form-urlencoded"});
 
 
   private userUrl =  'http://10.131.137.219:3001';
