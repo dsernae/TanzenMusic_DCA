@@ -7,7 +7,7 @@ import { Song } from '../models/Song';
 @Injectable()
 export class SongService {
   private headers = new Headers({ "Content-Type": "application/json"});
-  private songUrl = 'http://localhost:3000';
+  private songUrl = 'http://10.131.137.219:3001';
   constructor(private http: Http) {
   }
 

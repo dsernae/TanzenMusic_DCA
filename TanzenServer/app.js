@@ -21,7 +21,7 @@ models.forEach(function (model) {
 });
 var app = express();
 var originsWhitelist = [
-  'http://localhost:4200'    //this is my front-end url for development
+  'http://localhost/dsernae/'    //this is my front-end url for development
 
 ];
 
@@ -37,7 +37,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Origin", "http://10.131.137.219");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials","true");
   next();

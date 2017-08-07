@@ -13,7 +13,7 @@ export class UserService {
   private passheaders = new Headers({"Access-Control-Allow-Credentials":"true","Content-Type": "application/x-www-form-urlencoded"});
 
 
-  private userUrl =  'http://localhost:3000';
+  private userUrl =  'http://10.131.137.219:3001';
 
   constructor(private http: Http) {
   }
